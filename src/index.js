@@ -4,9 +4,91 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+let question1 = {
+  title: "Minä vuonna Suomi liittyi Euroopan unioniin?", 
+  type: "radio",
+  options: [
+    "1992", 
+    "1995", 
+    "1999",
+    "2001"
+  ], 
+  answer: [
+    false,
+    false,
+    false
+  ], 
+  correct: [
+    false,
+    true,
+    false,
+    false
+  ]
+}
+
+let question2 = {
+  title: "Valitse valtiot joiden lipussa on punaista.", 
+  type: "checkbox",
+  options: [
+    "Ruotsi", 
+    "Sveitsi", 
+    "Irlanti",
+    "Kanada",
+    "Kiina",
+    "Kreikka",
+    "Algeria"
+  ], 
+  answer: [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ], 
+  correct: [
+    false,
+    true,
+    false,
+    true,
+    true,
+    false,
+    false
+  ]
+}
+
+let question3 = {
+  title: "Kuuluuko ananas pitsaan?", 
+  type: "radio",
+  options: [
+    "Kyllä", 
+    "Ei" 
+  ], 
+  answer: [
+    false,
+    false
+  ], 
+  correct: [
+    false,
+    true
+  ]
+}
+
+let exampleData = {question: [
+  question1,
+  question2,
+  question3
+]}
+
+if (window.localStorage.length < 1)
+  window.localStorage.setItem('data', JSON.stringify(exampleData))
+
+let database = JSON.parse(window.localStorage.getItem('data'))
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App database={database}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
