@@ -13,7 +13,7 @@ const QuestionList = ({id, question, onClick}) => {
         <div>
           <input 
             id={index}
-            name={question.title} 
+            name={"" + id + question.title} 
             type={question.type}
             defaultChecked={question.answer[index]}
             onClick={() => onClick(id, index)}
@@ -25,13 +25,13 @@ const QuestionList = ({id, question, onClick}) => {
   )
 }
 
-const App = ({database}) => {
+const ExamList = ({thisExam, id, updateData}) => {
 
-  const [data, setData] = useState(database)
+  const [exam, setExam] = useState(thisExam)
 
   const handleClick = (questionId, answerId) => {
     console.log('Clicked', questionId, answerId)
-    let newData = JSON.parse(JSON.stringify(data))
+    let newData = JSON.parse(JSON.stringify(exam))
     let newQuestion = newData.question[questionId];
     if (newQuestion.type === "radio") 
       newQuestion.answer = newQuestion.answer.map(
@@ -39,21 +39,52 @@ const App = ({database}) => {
       )
     else
       newQuestion.answer[answerId] = newQuestion.answer[answerId] === false ? true : false
-    setData(newData)
+    setExam(newData)
   }
-  
+
   useEffect(() => {
-    window.localStorage.setItem('data', JSON.stringify(data))
-  }, [data])
-  
-  return (
+    updateData(exam, id)
+  }, [exam])
+
+  return ( 
     <div>
-      {data.question.map((item, index) => 
+      <h2>{exam.title}</h2>
+      {exam.question.map((item, index) => 
         <QuestionList 
           id={index}  
           question={item} 
           onClick={handleClick}
         />
+      )}
+    </div>
+  )
+}
+
+const App = ({database}) => {
+  
+  const [data, setData] = useState(database)
+
+  const updateData = (exam, index) => {
+    let newData = JSON.parse(JSON.stringify(data))
+    newData.exam[index] = exam
+    setData(newData)
+  }
+
+  useEffect(() => {
+    window.localStorage.setItem('data', JSON.stringify(data))
+  }, [data])
+
+  return (
+    <div>
+      {database.exam.map((item, index) => 
+        (
+          <ExamList
+            key={"exam" + index}
+            id={index}
+            thisExam={item}
+            updateData={updateData}
+          />
+        )
       )}
     </div>
   )

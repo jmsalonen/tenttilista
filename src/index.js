@@ -75,10 +75,27 @@ let question3 = {
   ]
 }
 
-let exampleData = {question: [
-  question1,
-  question2,
-  question3
+let tentti1 = {
+  title: "Javascriptin Perusteet",
+  question: [
+    question1,
+    question2,
+    question3
+  ]
+}
+
+let tentti2 = {
+  title: "Haskellin Perusteet",
+  question: [
+    question3,
+    question2,
+    question1
+  ]
+}
+
+let exampleData = {exam: [
+  tentti1,
+  tentti2
 ]}
 
 if (window.localStorage.length < 1)
@@ -88,7 +105,7 @@ let database = JSON.parse(window.localStorage.getItem('data'))
 
 ReactDOM.render(
   <React.StrictMode>
-    <App database={database}/>
+    <App key="main" database={database}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
