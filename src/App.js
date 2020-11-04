@@ -2,28 +2,38 @@ import logo from './logo.svg'
 import './App.css'
 import { useEffect, useState } from 'react'
 
-const QuestionList = ({id, question, onClick}) => {
-  
-  const checkAnswer = (a, b) => ((a === b && a) ? " - Oikein!" : "")
-  
-  return ( 
-    <div>
-      <h3>{question.title}</h3>
-      {question.options.map((item, index) => 
-        <div>
+const QuestionList = ({id, question, onClick, finished}) => ( 
+  <div>
+    <h3>
+      {question.title} 
+      {finished ? (JSON.stringify(question.answer) == JSON.stringify(question.correct) ? " - Correct!" : "") 
+                : ""}
+    </h3>
+    {question.options.map((item, index) => 
+      <div>
+        <input 
+          disabled={finished}
+          id={index}
+          name={question.title + id} 
+          type={question.type}
+          defaultChecked={question.answer[index]}
+          onClick={() => onClick(id, index)}
+        /> 
+        {finished ? 
           <input 
+            disabled={finished}
             id={index}
-            name={"" + id + question.title} 
+            name={question.title + id + "correct"} 
             type={question.type}
-            defaultChecked={question.answer[index]}
+            defaultChecked={question.correct[index]}
             onClick={() => onClick(id, index)}
-          /> 
-          <label>{item + checkAnswer(question.answer[index], question.correct[index])}</label> 
-        </div>  
-      )}
-    </div>
-  )
-}
+          /> : ""
+        }
+        <label>{item}</label> 
+      </div>  
+    )}
+  </div>
+)
 
 const ExamList = ({thisExam, id, updateData}) => {
 
@@ -42,6 +52,12 @@ const ExamList = ({thisExam, id, updateData}) => {
     setExam(newData)
   }
 
+  const handleButton = () => {
+    let newData = JSON.parse(JSON.stringify(exam))
+    newData.finished = true
+    setExam(newData)
+  }
+
   useEffect(() => {
     updateData(exam, id)
   }, [exam])
@@ -51,18 +67,24 @@ const ExamList = ({thisExam, id, updateData}) => {
       <h2>{exam.title}</h2>
       {exam.question.map((item, index) => 
         <QuestionList 
+          key={item.title + index}
           id={index}  
           question={item} 
           onClick={handleClick}
+          finished={thisExam.finished}
         />
       )}
+      <button onClick={handleButton}>Finished</button>
     </div>
   )
 }
 
 const App = ({database}) => {
   
+  const notSelected = -1
+
   const [data, setData] = useState(database)
+  const [selectedExam, setSelectedExam] = useState(notSelected)
 
   const updateData = (exam, index) => {
     let newData = JSON.parse(JSON.stringify(data))
@@ -76,15 +98,23 @@ const App = ({database}) => {
 
   return (
     <div>
-      {database.exam.map((item, index) => 
+      {data.exam.map((item, index) => 
         (
+          <button onClick={() => 
+            (selectedExam === index ? setSelectedExam(notSelected) : setSelectedExam(index))}>
+            {item.title}
+          </button>
+        )
+      )}
+      {data.exam.map((item, index) => 
+        ( index === selectedExam ? 
           <ExamList
-            key={"exam" + index}
+            key={item.title + index}
             id={index}
             thisExam={item}
             updateData={updateData}
           />
-        )
+        : "")
       )}
     </div>
   )

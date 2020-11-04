@@ -16,6 +16,7 @@ let question1 = {
   answer: [
     false,
     false,
+    false,
     false
   ], 
   correct: [
@@ -36,7 +37,7 @@ let question2 = {
     "Kanada",
     "Kiina",
     "Kreikka",
-    "Algeria"
+    "Pakistan"
   ], 
   answer: [
     false,
@@ -75,8 +76,9 @@ let question3 = {
   ]
 }
 
-let tentti1 = {
+let exam1 = {
   title: "Javascriptin Perusteet",
+  finished: false, 
   question: [
     question1,
     question2,
@@ -84,8 +86,9 @@ let tentti1 = {
   ]
 }
 
-let tentti2 = {
+let exam2 = {
   title: "Haskellin Perusteet",
+  finished: false, 
   question: [
     question3,
     question2,
@@ -94,8 +97,8 @@ let tentti2 = {
 }
 
 let exampleData = {exam: [
-  tentti1,
-  tentti2
+  exam1,
+  exam2
 ]}
 
 if (window.localStorage.length < 1)
