@@ -96,10 +96,13 @@ let exam2 = {
   ]
 }
 
-let exampleData = {exam: [
-  exam1,
-  exam2
-]}
+let exampleData = {
+  selected: -1,
+  exam: [
+    exam1,
+    exam2
+  ]
+}
 
 if (window.localStorage.length < 1)
   window.localStorage.setItem('data', JSON.stringify(exampleData))
