@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.Tenttilista {
+  margin: auto;
+  width: 60%;
+  padding: 20px;
+}

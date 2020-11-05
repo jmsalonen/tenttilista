@@ -1,34 +1,42 @@
+import Checkbox from '@material-ui/core/Checkbox';
+import Card from '@material-ui/core/Card';
+import { green } from '@material-ui/core/colors'
+import CheckIcon from '@material-ui/icons/Check';
+import BlockIcon from '@material-ui/icons/Block';
+
 const QuestionList = ({id, question, onClick, finished}) => ( 
-  <div>
-    <h3>
+  <Card>
+    <div>
       {question.title} 
-      {finished ? (JSON.stringify(question.answer) == JSON.stringify(question.correct) ? " - Correct!" : "") 
+      {finished ? (JSON.stringify(question.answer) == JSON.stringify(question.correct) ? <CheckIcon /> : <BlockIcon />) 
                 : ""}
-    </h3>
+    </div>
     {question.options.map((item, index) => 
       <div>
-        <input 
+        <Checkbox
           disabled={finished}
           id={index}
           name={question.title + id} 
           type={question.type}
-          defaultChecked={question.answer[index]}
+          checked={question.answer[index]}
           onClick={() => onClick(id, index)}
+          label="Primary"
         /> 
         {finished ? 
-          <input 
-            disabled={finished}
+          <Checkbox 
+            style={{ color: green[500] }}
             id={index}
             name={question.title + id + "correct"} 
             type={question.type}
-            defaultChecked={question.correct[index]}
-            onClick={() => onClick(id, index)}
+            checked={question.correct[index]}
+            onClick={finished ? "" : () => onClick(id, index)}
+            label=""
           /> : ""
         }
         <label>{item}</label> 
       </div>  
     )}
-  </div>
+  </Card>
 )
 
 export default QuestionList

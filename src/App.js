@@ -1,5 +1,6 @@
 import './App.css'
 import { useEffect, useState } from 'react'
+import { Button } from '@material-ui/core'
 
 import ExamList from './ExamList.js'
 
@@ -30,13 +31,13 @@ const App = ({database}) => {
   }, [data])
 
   return (
-    <div>
+    <div className="Tenttilista">
       {data.exam.map((item, index) => 
         (
-          <button onClick={() => 
+          <Button color="primary" onClick={() => 
             (data.selected === index ? updateSelected(notSelected) : updateSelected(index))}>
             {item.title}
-          </button>
+          </Button>
         )
       )}
       {data.exam.map((item, index) => 
@@ -48,7 +49,7 @@ const App = ({database}) => {
             thisExam={item}
             updateExam={updateExam}
           />
-          <button onClick={() => handleButton(item, index)}>{item.finished ? "Finished" : "Finished"}</button>
+          <Button variant="contained" color="primary" onClick={() => handleButton(item, index)}>{item.finished ? "Finished" : "Finished"}</Button>
           </>
         : "")
       )}

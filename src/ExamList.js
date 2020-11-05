@@ -24,14 +24,13 @@ const ExamList = ({thisExam, id, updateExam}) => {
 
   return ( 
     <div>
-      <h2>{exam.title}</h2>
       {exam.question.map((item, index) => 
         <QuestionList 
-        key={item.title + index}
-        id={index}  
-        question={item} 
-        onClick={handleQuestionClick}
-        finished={exam.finished}
+         key={item.title + index}
+         id={index}  
+         question={item} 
+         onClick={handleQuestionClick}
+         finished={exam.finished}
         />
       )}
     </div>

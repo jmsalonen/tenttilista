@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import Header from './Header.js'
+
 let question1 = {
   title: "Minä vuonna Suomi liittyi Euroopan unioniin?", 
   type: "radio",
@@ -111,6 +113,7 @@ let database = JSON.parse(window.localStorage.getItem('data'))
 
 ReactDOM.render(
   <React.StrictMode>
+    <Header />
     <App key="main" database={database}/>
   </React.StrictMode>,
   document.getElementById('root')
