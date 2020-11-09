@@ -4,9 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Header from './Header.js'
-
-let question1 = {
+const question1 = {
   title: "Minä vuonna Suomi liittyi Euroopan unioniin?", 
   type: "radio",
   options: [
@@ -29,7 +27,7 @@ let question1 = {
   ]
 }
 
-let question2 = {
+const question2 = {
   title: "Valitse valtiot joiden lipussa on punaista.", 
   type: "checkbox",
   options: [
@@ -61,7 +59,7 @@ let question2 = {
   ]
 }
 
-let question3 = {
+const question3 = {
   title: "Kuuluuko ananas pitsaan?", 
   type: "radio",
   options: [
@@ -78,7 +76,7 @@ let question3 = {
   ]
 }
 
-let exam1 = {
+const exam1 = {
   title: "Javascriptin Perusteet",
   finished: false, 
   question: [
@@ -88,7 +86,7 @@ let exam1 = {
   ]
 }
 
-let exam2 = {
+const exam2 = {
   title: "Haskellin Perusteet",
   finished: false, 
   question: [
@@ -98,7 +96,8 @@ let exam2 = {
   ]
 }
 
-let exampleData = {
+const exampleData = {
+  privilege: "teacher",
   selected: -1,
   exam: [
     exam1,
@@ -109,12 +108,15 @@ let exampleData = {
 if (window.localStorage.length < 1)
   window.localStorage.setItem('data', JSON.stringify(exampleData))
 
-let database = JSON.parse(window.localStorage.getItem('data'))
+const database = JSON.parse(window.localStorage.getItem('data'))
+
+const updateDatabase = (data) => {
+  window.localStorage.setItem('data', JSON.stringify(data))
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
-    <App key="main" database={database}/>
+    <App database={database} updateDatabase={updateDatabase}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

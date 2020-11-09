@@ -3,12 +3,17 @@ import Toolbar from '@material-ui/core/Toolbar';
 import { Button } from '@material-ui/core'
 
 
-const Header = (handleClick) => {
+const Header = ({updatePrivilege, userPrivilege}) => {
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Button style={{ color: "white" }}>Tenttilista</Button>
+          <Button 
+            style={{ color: "white" }}
+            onClick={updatePrivilege}
+          >
+            Vaihda Käyttöoikeutta: {userPrivilege}
+          </Button> 
         </Toolbar>
       </AppBar>
     </div>

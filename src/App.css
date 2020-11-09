@@ -39,6 +39,16 @@
 
 .Tenttilista {
   margin: auto;
-  width: 60%;
+  max-width: 60em;
+  min-width: 30em;
   padding: 20px;
+}
+
+.kortti {
+  padding: 1px;
+  position: relative;
+}
+
+.sulkuNappi {
+  float: right;
 }
