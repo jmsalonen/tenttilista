@@ -1,0 +1,115 @@
+{
+  "database": {
+    "usertype": "student",
+    "selected": 0,
+    "exam": [
+      {
+        "title": "Javascriptin Perusteet",
+        "finished": false,
+        "question": [
+          {
+            "title": "Minä vuonna Suomi liittyi Euroopan unioniin?",
+            "type": "radio",
+            "option": [
+              "1992",
+              "1995",
+              "1999",
+              "2001"
+            ],
+            "answer": [
+              false,
+              true,
+              false,
+              false
+            ],
+            "correct": [
+              false,
+              true,
+              false,
+              false
+            ]
+          },
+          {
+            "title": "Valitse valtiot joiden lipussa on punaista.",
+            "type": "checkbox",
+            "option": [
+              "Ruotsi",
+              "Sveitsi",
+              "Irlanti",
+              "Kanada",
+              "Kiina",
+              "Kreikka",
+              "Pakistan"
+            ],
+            "answer": [
+              false,
+              true,
+              true,
+              false,
+              true,
+              false,
+              false
+            ],
+            "correct": [
+              false,
+              true,
+              false,
+              true,
+              true,
+              false,
+              false
+            ]
+          },
+          {
+            "title": "Kuuluuko ananas pitsaan?",
+            "type": "radio",
+            "option": [
+              "Kyllä",
+              "Ei"
+            ],
+            "answer": [
+              true,
+              false
+            ],
+            "correct": [
+              false,
+              true
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Haskellin Perusteet",
+        "finished": false,
+        "question": [
+          {
+            "title": "Kumpi voittaa karhu vai leijona?",
+            "type": "radio",
+            "option": [
+              "Karhu",
+              "Leijona"
+            ],
+            "answer": [
+              false,
+              false
+            ],
+            "correct": [
+              true,
+              false
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Biologian Perusteet",
+        "finished": false,
+        "question": []
+      },
+      {
+        "title": "Biologian Syventävä",
+        "finished": false,
+        "question": []
+      }
+    ]
+  }
+}
